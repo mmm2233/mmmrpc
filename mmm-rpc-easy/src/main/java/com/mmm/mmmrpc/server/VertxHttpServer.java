@@ -26,7 +26,6 @@ public class VertxHttpServer implements HttpServer{
             } else {
                 // 如果启动失败，打印错误信息并输出堆栈跟踪
                 System.out.println("Failed to start server" + result.cause());
-                result.cause().printStackTrace();
             }
         });
     }
