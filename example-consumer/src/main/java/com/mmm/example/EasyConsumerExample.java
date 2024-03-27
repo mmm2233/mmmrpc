@@ -13,12 +13,12 @@ public class EasyConsumerExample {
         // 调用
         //User userServiceUser = userService.getUser(user);
         //静态代理
-        userService = new UserServiceProxy();
+        //userService = new UserServiceProxy();
 
-        //userService = ServiceProxyFactory.getProxy(UserService.class);
+        userService = ServiceProxyFactory.getProxy(UserService.class);
         if (userService != null) {
             User userServiceUser = userService.getUser(user);
-            System.out.println(userService.getUser(user));
+            System.out.println(userServiceUser.getName());
         }else {
             System.out.println("userServiceUser is null");
         }
