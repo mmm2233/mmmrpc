@@ -6,21 +6,22 @@ import com.mmm.mmmrpc.proxy.ServiceProxyFactory;
 
 public class EasyConsumerExample {
     public static void main(String[] args) {
-        UserService userService = null;
+        UserService userService = ServiceProxyFactory.getProxy(UserService.class);;
+
         User user = new User();
         user.setName("test");
 
+        User newUser = userService.getUser(user);
+        if (newUser != null) {
+            System.out.println(newUser.getName());
+        } else {
+            System.out.println("null");
+        }
+        long number = userService.getNumber();
+        System.out.println(number);
         // 调用
         //User userServiceUser = userService.getUser(user);
         //静态代理
         //userService = new UserServiceProxy();
-
-        userService = ServiceProxyFactory.getProxy(UserService.class);
-        if (userService != null) {
-            User userServiceUser = userService.getUser(user);
-            System.out.println(userServiceUser.getName());
-        }else {
-            System.out.println("userServiceUser is null");
-        }
     }
 }
