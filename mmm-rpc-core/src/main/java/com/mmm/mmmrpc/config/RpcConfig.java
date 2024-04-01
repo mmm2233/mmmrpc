@@ -1,5 +1,6 @@
 package com.mmm.mmmrpc.config;
 
+import com.mmm.mmmrpc.serializer.SerializerKeys;
 import lombok.Data;
 
 @Data
@@ -17,4 +18,6 @@ public class RpcConfig {
     private Integer serverPort = 8080;
 
     private boolean mock = false;
+
+    private String serializer = SerializerKeys.JDK;
 }

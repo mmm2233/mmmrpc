@@ -1,10 +1,12 @@
 package com.mmm.mmmrpc.server;
 
+import com.mmm.mmmrpc.RpcApplication;
 import com.mmm.mmmrpc.model.RpcRequest;
 import com.mmm.mmmrpc.model.RpcResponse;
 import com.mmm.mmmrpc.registry.LocalRegistry;
 import com.mmm.mmmrpc.serializer.JdkSerializer;
 import com.mmm.mmmrpc.serializer.Serializer;
+import com.mmm.mmmrpc.serializer.SerializerFactory;
 import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
@@ -17,7 +19,7 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
     @Override
     public void handle(HttpServerRequest request) {
         // 创建序列化对象
-        final Serializer serializer = new JdkSerializer();
+        Serializer serializer = SerializerFactory.getInstance(RpcApplication.getRpcConfig().getSerializer());
         // 打印接收到的请求方法和URI
         System.out.println("request received:" + request.method() + " " + request.uri());
         // 设置请求体处理器
